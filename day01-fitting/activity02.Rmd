@@ -5,6 +5,78 @@ date: "2024-01-23"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = F)
 ```
+
+#Libraries
+
+```{r}
+library(readr)
+library(httr)
+library(tidyverse)
+library(tidymodels)
+```
+
+
+#Uploading the data
+```{r}
+hfi <- read_csv("~/Preparations/STA 631/activity02-slr/day01-fitting/hfi data/hfi.csv")
+head(hfi)
+glimpse(hfi)
+```
+
+* I opted to download the hfi data file directly after few issues fetching it directly.
+
+* 1.What are the dimensions of the dataset? 1458 Observations (rows) and 123 variables (columns)
+
+  What does each row represent? - Each row represent the individual record of every attribute/variable.
+
+#Fltering the 2016 Data and creating a dataframe
+```{r}
+hfi_2016 <- data.frame(filter(hfi, year == 2016))
+#or
+#hfi_2016<- hfi %>% filter(year == 2016)
+#hfi_2016 <- data_frame(hfi_2016)
+head(hfi_2016)
+```
+  
+## 1. Identify our research question(s)
+Today's research question/goal is to predict a country's personal freedom score in 2016.
+
+For this activity we want to explore the relationship between the personal freedom score, `pf_score`, and the political pressures and controls on media content index,`pf_expression_control`.
+Specifically, we are going to use the political pressures and controls on media content index to predict a country's personal freedom score in 2016.
+
+
+### 2. Explore the variables of interest
+
+Answer the following questions (use your markdown skills) and complete the following tasks.
+
+2. What type of plot would you use to display the distribution of the personal freedom scores, `pf_score`? : 
+**A histogram because the pf-score data is continuous. 
+ 
+ Would this be the same type of plot to display the distribution of the political pressures and controls on media content index, `pf_expression_control`? 
+ ** pf_expression_control would also be represented using histogram for the same reason.
+ 
+ 
+#univariable-plots: Histogram for pf_expression_control and pf_score (Both are continuous)
+
+```{r fhi-2016}
+hfi_2016 %>% ggplot(aes(x = pf_score)) + geom_histogram(binwidth = 1, color = "black", fill = "blue") + labs(title = "Histogram of Personal Freedom Scores", x = "Personal Freedom Score", y = "Frequency")
+```
+
+
+
+```{r}
+
+hfi_2016 %>% ggplot(aes(x = pf_expression_control)) + geom_histogram(binwidth = 1, color = "blue", fill = "green") + labs(title = "Histogram of the distribution of the political pressures and controls", x = "Distribution of the political pressures and controls on media content index", y = "Frequency")
+```
+
+
+ 
+  
+  
+  
+  
+  
+  
 
