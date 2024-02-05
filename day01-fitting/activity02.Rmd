@@ -1,5 +1,6 @@
 ---
 title: "activity02"
+author: "Banabas Kariuki"
 output: html_document
 date: "2024-01-23"
 ---
